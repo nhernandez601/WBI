@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Request a Quote · WBI Custom Anime Cards</title>
+<meta name="description" content="Get a free quote on custom anime card & poster printing from WBI. Submit your art, pick your finish, and we'll reply with a price.">
+<meta property="og:title" content="Request a Quote · WBI Custom Anime Cards">
+<meta property="og:description" content="Submit your art for custom card & poster printing on an 8-color dye-ink system. Free quote by email.">
+<link rel="stylesheet" href="colors_and_type.css">
+<link rel="stylesheet" href="styles.css">
+<style>
+  body{min-height:100vh;}
+  .q-wrap{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:40px 22px 60px;}
+  .q-head{text-align:center;margin-bottom:26px;}
+  .q-logo{font-family:var(--font-display);font-style:italic;font-size:34px;background:var(--wbi-grad-brand-v);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:1px var(--wbi-cyan);paint-order:stroke fill;filter:drop-shadow(0 0 8px rgba(45,226,230,.45));text-decoration:none;display:inline-block;}
+  .q-head h1{font-family:var(--font-heading);font-weight:700;font-size:clamp(28px,5vw,40px);color:#fff;margin:14px 0 8px;}
+  .q-head p{color:var(--wbi-fg2);font-size:16px;max-width:46ch;margin:0 auto;}
+  .q-trust{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px;}
+  .q-trust span{font-family:var(--font-heading);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--wbi-fg2);background:var(--wbi-panel);border:1px solid var(--wbi-line);border-radius:999px;padding:6px 12px;}
+</style>
+</head>
+<body>
+<div class="wbi-bg"></div>
+<div class="wbi-grid-floor"></div>
+<div class="q-wrap">
+  <div class="q-head">
+    <a class="q-logo" href="index.html">WBI</a>
+    <h1>Request a Quote</h1>
+    <p>Custom anime cards, prints &amp; posters — printed on a professional 8-color dye-ink system. Submit your art and we'll email you a price. <b style="color:#fff;">No cards are printed until you confirm.</b></p>
+    <div class="q-trust"><span>★ Standard TCG size</span><span>8-Color Dye Ink</span><span>Free Quote</span></div>
+  </div>
+
+  <div class="form">
+    <form id="qform">
+      <div class="form-row two">
+        <div><label>Your email</label><input type="email" name="email" required placeholder="you@email.com"></div>
+        <div><label>Quantity of prints</label><input type="number" name="Quantity" min="1" value="1"></div>
+      </div>
+      <div class="form-row"><label>Character name</label><input type="text" name="Character" placeholder="e.g. Frieren"></div>
+      <div class="form-row"><label>Pose / description</label><textarea name="Pose / description" placeholder="Describe the pose, outfit, mood, background…"></textarea></div>
+      <div class="form-row"><label>Material</label>
+        <div class="seg" data-name="Material" data-value="Glossy paper">
+          <button type="button" class="on">Glossy paper</button><button type="button">Holographic paper</button><button type="button">Both glossy &amp; holo</button>
+        </div>
+      </div>
+      <div class="form-row two">
+        <div><label>Card stock</label><div class="seg" data-name="Card stock" data-value="With card stock"><button type="button" class="on">With card stock</button><button type="button">Without</button></div></div>
+        <div><label>Lamination</label><div class="seg" data-name="Lamination" data-value="With lamination"><button type="button" class="on">With lamination</button><button type="button">Without</button></div></div>
+      </div>
+      <div class="form-row"><label>Corners</label><div class="seg" data-name="Corners" data-value="Rounded corners"><button type="button" class="on">Rounded corners</button><button type="button">Square corners</button></div></div>
+      <div class="form-row">
+        <label>Artwork files</label>
+        <label class="drop-file">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;margin:0 auto 6px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></svg>
+          Drag &amp; drop or click to add files · .pdf .png .jpeg .jpg .tiff
+          <input type="file" name="artwork" multiple accept=".pdf,.png,.jpeg,.jpg,.tiff">
+        </label>
+        <div class="file-chips" id="qchips"></div>
+      </div>
+      <div class="form-error" id="qerr" style="display:none;"></div>
+      <button class="btn btn-primary btn-block" type="submit" id="qbtn">Request a Quote</button>
+      <p class="form-foot-note">Your request — including any files — is sent to <b>wbixcards@gmail.com</b> for review. We respond once reviewed; <b>no cards are printed until confirmed</b>.</p>
+    </form>
+  </div>
+</div>
+
+<script>
+  var FORMSPREE_URL = 'https://formspree.io/f/mjgdkjwv';
+  // segmented controls
+  document.querySelectorAll('.seg').forEach(function(seg){
+    seg.querySelectorAll('button').forEach(function(b){
+      b.addEventListener('click', function(){
+        seg.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});
+        b.classList.add('on'); seg.setAttribute('data-value', b.textContent.trim());
+      });
+    });
+  });
+  // file chips
+  var fileInput = document.querySelector('input[type=file]');
+  fileInput.addEventListener('change', function(){
+    var c = document.getElementById('qchips'); c.innerHTML = '';
+    Array.from(fileInput.files||[]).forEach(function(f){ var s=document.createElement('span'); s.className='file-chip'; s.textContent=f.name; c.appendChild(s); });
+  });
+  // submit
+  document.getElementById('qform').addEventListener('submit', async function(e){
+    e.preventDefault();
+    var btn=document.getElementById('qbtn'), errEl=document.getElementById('qerr');
+    btn.disabled=true; btn.style.opacity=.7; btn.textContent='Sending…'; errEl.style.display='none';
+    try{
+      var fd=new FormData(e.target);
+      document.querySelectorAll('.seg').forEach(function(seg){ fd.append(seg.getAttribute('data-name'), seg.getAttribute('data-value')); });
+      fd.append('_subject', 'WBI Quote Request — ' + (fd.get('Character')||'New request'));
+      var res=await fetch(FORMSPREE_URL,{method:'POST',body:fd,headers:{Accept:'application/json'}});
+      if(res.ok){ window.location.href='thanks.html'; return; }
+      var data=await res.json().catch(function(){return {};});
+      errEl.textContent=(data.errors&&data.errors.map(function(x){return x.message;}).join(', '))||'Something went wrong — please try again.';
+      errEl.style.display='flex';
+    }catch(ex){ errEl.textContent='Network error — please try again.'; errEl.style.display='flex'; }
+    btn.disabled=false; btn.style.opacity=1; btn.textContent='Request a Quote';
+  });
+</script>
+</body>
+</html>
