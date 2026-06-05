@@ -1,0 +1,209 @@
+/* ============================================================
+   WBI — Waifu Bureau of Investigation
+   Colors & Type Foundations
+   ------------------------------------------------------------
+   Aesthetic: vaporwave + cyberpunk neon "waifu" trading cards.
+   Hot magenta + electric violet on deep midnight ink, with a
+   cyan signal accent. Rain-slicked neon-city energy.
+   ============================================================ */
+
+/* ---- Webfonts (Google Fonts CDN) -------------------------------
+   NOTE: The original WBI logo wordmark is a custom hand-lettered
+   bubble/graffiti face we do NOT have the file for. "Luckiest Guy"
+   is the closest free substitute for display lockups. See README
+   (Typography) — request the real logo font from the client. */
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Chakra+Petch:ital,wght@0,400;0,500;0,600;0,700;1,600;1,700&family=Sora:wght@300;400;500;600;700;800&family=Mochiy+Pop+One&display=swap');
+
+:root {
+  /* ============ CORE PALETTE — "Waifu Neon" ============ */
+
+  /* Magenta / pink — primary brand, the glowing "W" */
+  --wbi-magenta:        #FF2D9B;   /* primary hot pink  */
+  --wbi-magenta-bright: #FF4FB3;   /* hover / glow lift */
+  --wbi-pink:           #FF7AD0;   /* soft pink         */
+  --wbi-pink-pale:      #FFC2E8;   /* tint / on-dark text accent */
+
+  /* Violet / purple — gradient partner, the "B I" */
+  --wbi-violet:         #A24BFF;   /* electric violet   */
+  --wbi-violet-bright:  #B86BFF;
+  --wbi-purple-deep:    #6B2FB3;   /* deep grape        */
+  --wbi-lavender:       #C9B3FF;   /* muted lavender text */
+
+  /* Cyan — signal accent, the logo outline glow */
+  --wbi-cyan:           #2DE2E6;   /* electric cyan     */
+  --wbi-cyan-bright:    #6BF0F2;
+  --wbi-blue:           #4DA6FF;   /* city-light blue   */
+
+  /* Sunset (vaporwave sky) — used sparingly */
+  --wbi-coral:          #FF6B6B;
+  --wbi-amber:          #FFB454;   /* "Legendary" gold  */
+
+  /* ============ INK / SURFACES (dark-first) ============ */
+  --wbi-ink:            #07060F;   /* page void, true backdrop */
+  --wbi-night:          #100B22;   /* base surface     */
+  --wbi-panel:          #1A1238;   /* raised panel     */
+  --wbi-panel-2:        #241848;   /* card / popover   */
+  --wbi-line:           #34255E;   /* hairline border  */
+  --wbi-line-soft:      #2A1C4E;
+
+  /* ============ TEXT ON DARK ============ */
+  --wbi-fg1:            #FFFFFF;   /* primary text     */
+  --wbi-fg2:            #D9CFF2;   /* secondary text   */
+  --wbi-fg3:            #9A8CC4;   /* muted / captions */
+  --wbi-fg-disabled:    #5E5286;
+
+  /* ============ GRADIENTS ============ */
+  --wbi-grad-brand:   linear-gradient(150deg, var(--wbi-magenta) 0%, var(--wbi-violet) 100%);
+  --wbi-grad-brand-v: linear-gradient(180deg, var(--wbi-pink) 0%, var(--wbi-magenta) 42%, var(--wbi-violet) 100%);
+  --wbi-grad-sunset:  linear-gradient(180deg, #2B1A52 0%, #7B2C8E 48%, #FF6FA8 100%);
+  --wbi-grad-cyber:   linear-gradient(120deg, var(--wbi-violet) 0%, var(--wbi-magenta) 55%, var(--wbi-cyan) 120%);
+  --wbi-grad-legend:  linear-gradient(120deg, #FFE08A 0%, #FF7AD0 35%, #6BF0F2 70%, #B86BFF 100%); /* holo foil */
+  --wbi-grad-panel:   linear-gradient(165deg, var(--wbi-panel) 0%, var(--wbi-night) 100%);
+
+  /* ============ GLOW / SHADOW SYSTEM ============ */
+  /* Neon glows: layered colored shadows = the signature look */
+  --wbi-glow-magenta: 0 0 12px rgba(255,45,155,.55), 0 0 28px rgba(255,45,155,.35);
+  --wbi-glow-cyan:    0 0 12px rgba(45,226,230,.55), 0 0 28px rgba(45,226,230,.30);
+  --wbi-glow-violet:  0 0 12px rgba(162,75,255,.55), 0 0 30px rgba(162,75,255,.32);
+  --wbi-glow-soft:    0 0 18px rgba(162,75,255,.22);
+
+  /* Elevation (dark UI): deep, slightly violet-tinted */
+  --wbi-shadow-1: 0 1px 2px rgba(0,0,0,.55);
+  --wbi-shadow-2: 0 6px 18px rgba(0,0,0,.55);
+  --wbi-shadow-3: 0 18px 48px rgba(7,6,15,.72);
+  --wbi-shadow-card: 0 14px 40px rgba(7,6,15,.65), 0 0 0 1px var(--wbi-line);
+
+  /* ============ RADII ============ */
+  --wbi-r-xs: 4px;
+  --wbi-r-sm: 8px;
+  --wbi-r-md: 14px;
+  --wbi-r-lg: 22px;
+  --wbi-r-pill: 999px;
+  --wbi-r-card: 18px;   /* trading-card corner */
+
+  /* ============ SPACING (4px base) ============ */
+  --wbi-s-1: 4px;   --wbi-s-2: 8px;   --wbi-s-3: 12px;  --wbi-s-4: 16px;
+  --wbi-s-5: 24px;  --wbi-s-6: 32px;  --wbi-s-7: 48px;  --wbi-s-8: 64px;
+  --wbi-s-9: 96px;
+
+  /* ============ TYPE FAMILIES ============ */
+  --font-display: 'Luckiest Guy', 'Bangers', system-ui, sans-serif; /* logo / hero punch */
+  --font-heading: 'Chakra Petch', 'Orbitron', system-ui, sans-serif; /* cyberpunk headers/labels */
+  --font-body:    'Sora', system-ui, -apple-system, sans-serif;       /* readable body */
+  --font-jp:      'Mochiy Pop One', 'Sora', sans-serif;               /* kana accent flavor */
+
+  /* ============ TYPE SCALE ============ */
+  --t-display:  clamp(44px, 7vw, 92px);
+  --t-h1:       clamp(34px, 4.6vw, 60px);
+  --t-h2:       clamp(26px, 3.2vw, 40px);
+  --t-h3:       22px;
+  --t-h4:       18px;
+  --t-body-lg:  18px;
+  --t-body:     16px;
+  --t-small:    14px;
+  --t-caption:  12px;
+}
+
+/* ============================================================
+   SEMANTIC ELEMENT STYLES
+   ============================================================ */
+
+.wbi-display {
+  font-family: var(--font-display);
+  font-size: var(--t-display);
+  line-height: .92;
+  letter-spacing: .01em;
+  font-style: italic;
+  color: var(--wbi-fg1);
+  text-transform: uppercase;
+}
+
+/* The signature logo-style lockup: gradient fill + cyan halo + ink stroke */
+.wbi-wordmark {
+  font-family: var(--font-display);
+  font-style: italic;
+  text-transform: uppercase;
+  background: var(--wbi-grad-brand-v);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--wbi-cyan);
+  paint-order: stroke fill;
+  filter: drop-shadow(0 0 10px rgba(45,226,230,.5)) drop-shadow(0 3px 0 rgba(7,6,15,.9));
+}
+
+h1, .wbi-h1 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: var(--t-h1);
+  line-height: 1.04;
+  letter-spacing: .005em;
+  color: var(--wbi-fg1);
+}
+h2, .wbi-h2 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: var(--t-h2);
+  line-height: 1.1;
+  color: var(--wbi-fg1);
+}
+h3, .wbi-h3 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: var(--t-h3);
+  line-height: 1.2;
+  color: var(--wbi-fg1);
+}
+h4, .wbi-h4 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: var(--t-h4);
+  line-height: 1.25;
+  color: var(--wbi-fg1);
+}
+
+/* Cyberpunk eyebrow / label — tracked-out caps, often cyan */
+.wbi-eyebrow {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: var(--t-caption);
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--wbi-cyan);
+}
+
+p, .wbi-body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--t-body);
+  line-height: 1.65;
+  color: var(--wbi-fg2);
+  text-wrap: pretty;
+}
+.wbi-body-lg { font-size: var(--t-body-lg); line-height: 1.6; }
+.wbi-small   { font-size: var(--t-small); line-height: 1.55; color: var(--wbi-fg3); }
+.wbi-caption { font-size: var(--t-caption); letter-spacing: .02em; color: var(--wbi-fg3); }
+
+/* Kana / JP flavor accent (decorative) */
+.wbi-jp {
+  font-family: var(--font-jp);
+  color: var(--wbi-pink-pale);
+  letter-spacing: .04em;
+}
+
+code, .wbi-mono {
+  font-family: 'Chakra Petch', ui-monospace, monospace;
+  font-size: var(--t-small);
+  letter-spacing: .03em;
+  color: var(--wbi-cyan-bright);
+}
+
+a, .wbi-link {
+  color: var(--wbi-cyan);
+  text-decoration: none;
+  transition: color .15s ease, text-shadow .15s ease;
+}
+a:hover, .wbi-link:hover {
+  color: var(--wbi-cyan-bright);
+  text-shadow: var(--wbi-glow-cyan);
+}
